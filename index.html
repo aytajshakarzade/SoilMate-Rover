@@ -944,42 +944,153 @@
       color: var(--text-muted);
     }
 
-        /* CONTACT - Improved */
+            /* ════════════════════════════════════════
+       CONTACT SECTION — Ultra Premium Design
+       ════════════════════════════════════════ */
+
     .contact-section {
-      background: transparent;
-      padding: 3rem 5% 5rem;
+      position: relative;
+      padding: 5rem 5% 6rem;
+      overflow: hidden;
     }
 
+    /* Animated background particles for contact */
+    .contact-bg-particles {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+
+    .contact-bg-particles::before {
+      content: '';
+      position: absolute;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, var(--primary-glow) 0%, transparent 70%);
+      top: -200px;
+      right: -100px;
+      border-radius: 50%;
+      animation: contactPulse 8s ease-in-out infinite;
+    }
+
+    .contact-bg-particles::after {
+      content: '';
+      position: absolute;
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(245, 158, 11, 0.08) 0%, transparent 70%);
+      bottom: -100px;
+      left: -100px;
+      border-radius: 50%;
+      animation: contactPulse 10s ease-in-out infinite reverse;
+    }
+
+    @keyframes contactPulse {
+      0%, 100% { transform: scale(1); opacity: 0.5; }
+      50% { transform: scale(1.3); opacity: 0.8; }
+    }
+
+    /* Floating orbs */
+    .contact-orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(60px);
+      opacity: 0.4;
+      animation: orbFloat 15s ease-in-out infinite;
+    }
+
+    .contact-orb-1 {
+      width: 300px;
+      height: 300px;
+      background: linear-gradient(135deg, var(--primary), var(--primary-light));
+      top: 10%;
+      left: 5%;
+      animation-delay: 0s;
+    }
+
+    .contact-orb-2 {
+      width: 250px;
+      height: 250px;
+      background: linear-gradient(135deg, var(--secondary), var(--secondary-light));
+      bottom: 20%;
+      right: 10%;
+      animation-delay: -5s;
+    }
+
+    .contact-orb-3 {
+      width: 200px;
+      height: 200px;
+      background: linear-gradient(135deg, var(--accent), var(--primary));
+      top: 50%;
+      left: 40%;
+      animation-delay: -10s;
+      opacity: 0.2;
+    }
+
+    @keyframes orbFloat {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      25% { transform: translate(30px, -30px) scale(1.1); }
+      50% { transform: translate(-20px, 20px) scale(0.95); }
+      75% { transform: translate(20px, 30px) scale(1.05); }
+    }
+
+    /* Grid Layout */
     .contact-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 2.5rem;
-      max-width: 1100px;
+      grid-template-columns: 1fr 1.1fr;
+      gap: 3rem;
+      max-width: 1200px;
       margin: 0 auto;
       align-items: stretch;
+      position: relative;
+      z-index: 1;
     }
 
-    /* LEFT SIDE - Contact Info */
+    /* ═══ LEFT SIDE — Contact Info ═══ */
     .contact-info {
       display: flex;
       flex-direction: column;
       gap: 1.5rem;
     }
 
-    .contact-info h3 {
-      font-size: 1.6rem;
-      margin-bottom: 0.3rem;
-      color: var(--text);
-      font-weight: 700;
-    }
-
-    .contact-info > p {
-      font-size: 1rem;
-      color: var(--text-secondary);
-      line-height: 1.6;
+    .contact-info-header {
       margin-bottom: 0.5rem;
     }
 
+    .contact-info-header h3 {
+      font-size: 2rem;
+      margin-bottom: 0.8rem;
+      color: var(--text);
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      position: relative;
+      display: inline-block;
+    }
+
+    .contact-info-header h3::after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 0;
+      width: 60px;
+      height: 4px;
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      border-radius: 2px;
+    }
+
+    .contact-info-header > p {
+      font-size: 1rem;
+      color: var(--text-secondary);
+      line-height: 1.7;
+      margin-top: 1.2rem;
+    }
+
+    /* Contact Cards */
     .contact-info-cards {
       display: flex;
       flex-direction: column;
@@ -988,91 +1099,209 @@
 
     .contact-item {
       display: flex;
-      align-items: flex-start;
-      gap: 1rem;
-      padding: 1.2rem 1.4rem;
-      border-radius: 16px;
+      align-items: center;
+      gap: 1.2rem;
+      padding: 1.4rem 1.6rem;
+      border-radius: 20px;
       background: var(--card);
-      border: 1px solid var(--border);
-      transition: all 0.3s ease;
+      border: 1.5px solid var(--border);
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
       box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .contact-item::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 4px;
+      height: 100%;
+      background: linear-gradient(180deg, var(--primary), var(--secondary));
+      transform: scaleY(0);
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      border-radius: 20px 0 0 20px;
     }
 
     .contact-item:hover {
-      transform: translateX(5px);
+      transform: translateX(8px) translateY(-2px);
       border-color: var(--primary);
-      box-shadow: var(--shadow-lg);
+      box-shadow: var(--shadow-xl);
+    }
+
+    .contact-item:hover::before {
+      transform: scaleY(1);
     }
 
     .contact-item i {
-      width: 44px;
-      height: 44px;
-      min-width: 44px;
-      font-size: 1rem;
-      border-radius: 12px;
+      width: 52px;
+      height: 52px;
+      min-width: 52px;
+      font-size: 1.2rem;
+      border-radius: 16px;
       background: linear-gradient(135deg, var(--primary), var(--primary-light));
       display: flex;
       align-items: center;
       justify-content: center;
       color: white;
-      margin-top: 2px;
+      box-shadow: 0 8px 20px var(--primary-glow);
+      transition: all 0.3s ease;
+      position: relative;
+      z-index: 1;
+    }
+
+    .contact-item:hover i {
+      transform: scale(1.1) rotate(-5deg);
+      box-shadow: 0 12px 30px var(--primary-glow);
     }
 
     .contact-item .info-text {
       flex: 1;
+      position: relative;
+      z-index: 1;
     }
 
     .contact-item .info-text strong {
       display: block;
-      font-size: 1.05rem;
+      font-size: 1.1rem;
       color: var(--text);
-      margin-bottom: 0.3rem;
+      margin-bottom: 0.4rem;
+      font-weight: 600;
+      transition: color 0.3s ease;
+    }
+
+    .contact-item:hover .info-text strong {
+      color: var(--primary);
     }
 
     .contact-item .info-text p {
       color: var(--text-muted);
-      font-size: 0.85rem;
+      font-size: 0.9rem;
       margin: 0;
     }
 
-    /* RIGHT SIDE - Form */
+    /* Social Links Area */
+    .contact-social {
+      margin-top: 1rem;
+      padding: 1.2rem 1.6rem;
+      background: var(--card);
+      border-radius: 20px;
+      border: 1.5px solid var(--border);
+      box-shadow: var(--shadow);
+    }
+
+    .contact-social p {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-bottom: 0.8rem;
+      font-weight: 500;
+    }
+
+    .social-links {
+      display: flex;
+      gap: 0.8rem;
+    }
+
+    .social-link {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: var(--bg-gray);
+      border: 1.5px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-secondary);
+      text-decoration: none;
+      transition: all 0.3s ease;
+      font-size: 1.1rem;
+    }
+
+    .social-link:hover {
+      background: linear-gradient(135deg, var(--primary), var(--primary-light));
+      color: white;
+      border-color: var(--primary);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px var(--primary-glow);
+    }
+
+    /* ═══ RIGHT SIDE — Form ═══ */
     .contact-form-wrap {
       background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 24px;
-      padding: 2rem 2.2rem;
-      box-shadow: var(--shadow-lg);
+      border: 1.5px solid var(--border);
+      border-radius: 28px;
+      padding: 2.5rem;
+      box-shadow: var(--shadow-xl);
       height: 100%;
       display: flex;
       flex-direction: column;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.4s ease;
+    }
+
+    .contact-form-wrap::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 5px;
+      background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent), var(--primary));
+      background-size: 300% 100%;
+      animation: gradientFlow 4s ease infinite;
+    }
+
+    @keyframes gradientFlow {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .contact-form-wrap:hover {
+      box-shadow: 0 25px 50px -12px rgba(22, 163, 74, 0.15);
+      border-color: rgba(22, 163, 74, 0.3);
     }
 
     .form-group {
-      margin-bottom: 1rem;
+      margin-bottom: 1.2rem;
+      position: relative;
     }
 
     .form-group label {
       display: block;
-      font-size: 0.85rem;
-      font-weight: 600;
-      margin-bottom: 0.4rem;
+      font-size: 0.8rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
       color: var(--text-secondary);
       text-transform: uppercase;
-      letter-spacing: 0.5px;
+      letter-spacing: 1px;
+      transition: color 0.3s ease;
+    }
+
+    .form-group:focus-within label {
+      color: var(--primary);
     }
 
     .form-group input,
     .form-group textarea,
     .form-group select {
       width: 100%;
-      padding: 0.85rem 1rem;
+      padding: 1rem 1.2rem;
       font-size: 0.95rem;
-      border-radius: 12px;
-      border: 1.5px solid var(--border);
+      border-radius: 14px;
+      border: 2px solid var(--border);
       background: var(--bg-gray);
       color: var(--text);
-      transition: all 0.3s ease;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
       font-family: 'Inter', sans-serif;
+    }
+
+    .form-group input:hover,
+    .form-group textarea:hover,
+    .form-group select:hover {
+      border-color: rgba(22, 163, 74, 0.4);
     }
 
     .form-group input:focus,
@@ -1081,46 +1310,111 @@
       outline: none;
       border-color: var(--primary);
       background: var(--card);
-      box-shadow: 0 0 0 4px var(--primary-glow);
+      box-shadow: 0 0 0 5px var(--primary-glow), 0 4px 20px rgba(22, 163, 74, 0.1);
+      transform: translateY(-1px);
     }
 
     .form-group input::placeholder,
     .form-group textarea::placeholder {
       color: var(--text-muted);
+      opacity: 0.7;
     }
 
     .form-group textarea {
       resize: none;
-      height: 120px;
-      line-height: 1.5;
+      height: 130px;
+      line-height: 1.6;
     }
 
     .form-group select {
       cursor: pointer;
       appearance: none;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%239ca3af' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%239ca3af' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
       background-repeat: no-repeat;
-      background-position: right 1rem center;
-      padding-right: 2.5rem;
+      background-position: right 1.2rem center;
+      padding-right: 3rem;
     }
 
-    .contact-form-wrap .btn {
-      padding: 0.9rem;
-      font-size: 1rem;
-      border-radius: 14px;
+    /* Submit Button */
+    .contact-form-wrap .btn-submit {
+      width: 100%;
+      padding: 1.1rem;
+      font-size: 1.05rem;
+      border-radius: 16px;
       margin-top: 0.5rem;
-      font-weight: 600;
+      font-weight: 700;
+      background: linear-gradient(135deg, var(--primary), var(--primary-light));
+      color: white;
+      border: none;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 0 8px 25px var(--primary-glow);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.6rem;
+      font-family: 'Inter', sans-serif;
     }
 
-    .contact-form-wrap .btn i {
-      font-size: 0.9rem;
+    .contact-form-wrap .btn-submit::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+      transition: left 0.6s ease;
     }
 
-    /* RESPONSIVE */
-    @media (max-width: 900px) {
+    .contact-form-wrap .btn-submit:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 15px 40px rgba(22, 163, 74, 0.3);
+    }
+
+    .contact-form-wrap .btn-submit:hover::before {
+      left: 100%;
+    }
+
+    .contact-form-wrap .btn-submit:active {
+      transform: translateY(-1px);
+    }
+
+    .contact-form-wrap .btn-submit i {
+      font-size: 1rem;
+      transition: transform 0.3s ease;
+    }
+
+    .contact-form-wrap .btn-submit:hover i {
+      transform: translateX(3px);
+    }
+
+    /* Form shine effect on hover */
+    .contact-form-wrap::after {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255,255,255,0.03) 0%, transparent 60%);
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+
+    .contact-form-wrap:hover::after {
+      opacity: 1;
+    }
+
+    /* ═══ RESPONSIVE ═══ */
+    @media (max-width: 1024px) {
       .contact-grid {
         grid-template-columns: 1fr;
-        gap: 2rem;
+        gap: 2.5rem;
+        max-width: 700px;
       }
 
       .contact-info {
@@ -1134,16 +1428,42 @@
 
     @media (max-width: 768px) {
       .contact-section {
-        padding: 2rem 4% 3rem;
+        padding: 3rem 4% 4rem;
       }
 
       .contact-form-wrap {
-        padding: 1.5rem;
-        border-radius: 20px;
+        padding: 1.8rem;
+        border-radius: 24px;
       }
 
       .contact-item {
-        padding: 1rem 1.2rem;
+        padding: 1.2rem;
+      }
+
+      .contact-item i {
+        width: 44px;
+        height: 44px;
+        font-size: 1rem;
+      }
+
+      .contact-info-header h3 {
+        font-size: 1.6rem;
+      }
+
+      .contact-orb {
+        display: none;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .contact-form-wrap {
+        padding: 1.4rem;
+      }
+
+      .form-group input,
+      .form-group textarea,
+      .form-group select {
+        padding: 0.85rem 1rem;
       }
     }/* LOGIN PAGE - FIXED CENTERED */
     /* LOGIN PAGE - PREMIUM COMPLEX DESIGN */
@@ -2786,20 +3106,33 @@
       <p>© 2026 SoilMate Robotics</p>
     </footer>
   </div>
-    <!-- PAGE: CONTACT -->
+      <!-- ════════════════════════════════════════
+       PAGE: CONTACT — Ultra Premium
+       ════════════════════════════════════════ -->
   <div class="page" id="page-contact">
     <div style="height: 100px;"></div>
     <section class="contact-section">
-      <div class="section" style="padding:0;">
+      <!-- Animated Background -->
+      <div class="contact-bg-particles"></div>
+      <div class="contact-orb contact-orb-1"></div>
+      <div class="contact-orb contact-orb-2"></div>
+      <div class="contact-orb contact-orb-3"></div>
+
+      <div class="section" style="padding:0; position:relative; z-index:1;">
         <div class="section-header">
           <span class="tag">Əlaqə</span>
           <h2>Bizimlə Əlaqə</h2>
           <p>Sualınız var? Komandamız tezliklə cavab verəcək.</p>
         </div>
+
         <div class="contact-grid">
+          <!-- LEFT: Contact Info -->
           <div class="contact-info">
-            <h3>Sizinlə Danışaq</h3>
-            <p>SoilMate Robotics ilə əlaqə saxlamaq üçün aşağıdakı formu doldurun və ya birbaşa əlaqə vasitələrimizdən istifadə edin.</p>
+            <div class="contact-info-header">
+              <h3>Sizinlə Danışaq</h3>
+              <p>SoilMate Robotics ilə əlaqə saxlamaq üçün aşağıdakı formu doldurun və ya birbaşa əlaqə vasitələrimizdən istifadə edin.</p>
+            </div>
+
             <div class="contact-info-cards">
               <div class="contact-item">
                 <i class="fas fa-map-marker-alt"></i>
@@ -2808,6 +3141,7 @@
                   <p>Baş ofis</p>
                 </div>
               </div>
+
               <div class="contact-item">
                 <i class="fas fa-phone"></i>
                 <div class="info-text">
@@ -2815,6 +3149,7 @@
                   <p>Həftə içi 09:00-18:00</p>
                 </div>
               </div>
+
               <div class="contact-item">
                 <i class="fas fa-envelope"></i>
                 <div class="info-text">
@@ -2823,7 +3158,27 @@
                 </div>
               </div>
             </div>
+
+            <div class="contact-social">
+              <p>Bizi izləyin</p>
+              <div class="social-links">
+                <a href="#" class="social-link" onclick="showToast('Tezliklə aktiv ediləcək'); return false;">
+                  <i class="fab fa-instagram"></i>
+                </a>
+                <a href="#" class="social-link" onclick="showToast('Tezliklə aktiv ediləcək'); return false;">
+                  <i class="fab fa-linkedin-in"></i>
+                </a>
+                <a href="#" class="social-link" onclick="showToast('Tezliklə aktiv ediləcək'); return false;">
+                  <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="#" class="social-link" onclick="showToast('Tezliklə aktiv ediləcək'); return false;">
+                  <i class="fab fa-youtube"></i>
+                </a>
+              </div>
+            </div>
           </div>
+
+          <!-- RIGHT: Contact Form -->
           <div class="contact-form-wrap">
             <form onsubmit="handleContact(event)">
               <div class="form-group">
@@ -2847,7 +3202,7 @@
                 <label>Mesaj</label>
                 <textarea placeholder="Mesajınızı yazın..." required="" rows="4"></textarea>
               </div>
-              <button class="btn btn-primary" style="width:100%; justify-content:center;" type="submit">
+              <button class="btn-submit" type="submit">
                 <i class="fas fa-paper-plane"></i> Göndər
               </button>
             </form>
